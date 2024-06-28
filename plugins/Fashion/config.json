@@ -1,0 +1,19 @@
+{
+    "code": "fashion",
+    "name": {
+        "zh_cn": "测试模板",
+        "en": "Test themes"
+    },
+    "description": {
+        "zh_cn": "测试模板",
+        "en": "Translate product, category and page by Youdao Translator"
+    },
+    "type": "theme",
+    "version": "v1.0.0",
+    "icon": "/image/logo.png",
+    "theme": "/image/test-theme.png",
+    "author": {
+        "name": "sjzjams",
+        "email": "sjzjams@gmail.com"
+    }
+}
