@@ -1,5 +1,6 @@
 #  **请移步到 https://github.com/beikeshop/beikeshop** 
 
+# https://yuanshen.zhihuitd.com/index.php/archives/19/ 主题开发流程梳理以及遇到的问题解决
 
 <img height=70 src="https://beikeshop.com/image/beike.svg" >
 
