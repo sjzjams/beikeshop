@@ -42,3 +42,19 @@ if (mix.inProduction()) {
   mix.version();
 }
 */
+
+const themeFileName =  'Fashion';
+const themeCode = themeFileName.replace(/([A-Z])/g,"_$1").toLowerCase().replace(/^_/,'');
+
+// 拷贝模版 blade 文件 到 themes 目录下
+if (!mix.inProduction()) {
+  mix.copy(`plugins/${themeFileName}/Themes`, 'themes');
+}
+// 编译模版 scss/js 到 public/build 下
+mix.sass(`plugins/${themeFileName}/Resources/beike/shop/${themeCode}/css/bootstrap/bootstrap.scss`, `public/build/beike/shop/${themeCode}/css/bootstrap.css`);
+mix.sass(`plugins/${themeFileName}/Resources/beike/shop/${themeCode}/css/app.scss`, `public/build/beike/shop/${themeCode}/css/app.css`);
+mix.js(`plugins/${themeFileName}/Resources/beike/shop/${themeCode}/js/app.js`, `public/build/beike/shop/${themeCode}/js/app.js`);
+
+if (mix.inProduction()) {
+  mix.version();
+}

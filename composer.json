@@ -95,14 +95,18 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "ext-pcntl": "8.0",
+            "ext-posix": "8.0"
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "https://mirrors.tencent.com/composer/"
+            "url": "https://packagist.org"
         }
     }
 }
