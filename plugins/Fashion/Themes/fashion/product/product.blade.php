@@ -185,6 +185,10 @@
                   <button class="btn btn-link ps-md-0 text-secondary" data-in-wishlist="{{ $product['in_wishlist'] }}" onclick="bk.addWishlist('{{ $product['id'] }}', this)">
                     <i class="bi bi-heart{{ $product['in_wishlist'] ? '-fill' : '' }} me-1"></i> <span>{{ __('shop/products.add_to_favorites') }}</span>
                   </button>
+                  <div>
+                    <i class="bi bi-heart{{ $product['in_wishlist'] ? '-fill' : '' }}"></i>
+                    <span>test</span>
+                  </div>
                 </div>
                 @endhookwrapper
               @endif
