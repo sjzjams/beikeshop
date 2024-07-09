@@ -32,6 +32,7 @@
             <div class="left {{ $iframeClass }}"  v-if="images.length">
               <div class="swiper" id="swiper">
                 <div class="swiper-wrapper">
+                  <!-- 搭配vue 获取商品返回的图片 绑定到视图 v-for -->
                   <div class="swiper-slide" :class="!index ? 'active' : ''" v-for="image, index in images" :key="index">
                     <a href="javascript:;" :data-image="image.preview" :data-zoom-image="image.popup">
                       <img :src="image.thumb" class="img-fluid">
@@ -315,6 +316,7 @@
         } else {
           // 如果没有默认的sku，则取第一个sku的第一个变量的第一个值
           this.product = skus[0];
+          // 获取Controller 接口中返回的商品图片
           this.images = @json($product['images'] ?? []);
         }
       },

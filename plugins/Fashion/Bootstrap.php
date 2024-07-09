@@ -37,12 +37,21 @@ class Bootstrap
         });
         
         add_hook_blade('header.top.blue', [$this, 'headerTmp'], 1);
+
+        add_hook_blade('product.detail.name', [$this, 'modifyGoodsName'], 1);
     }
 
     public function headerTmp($callback, $output, $data): string
     {
         // 返回样式
         $view = '<div class="top-wrap" style="color:blue">' . $output . '</div>';
+        return $view;
+    }
+
+    // 修改商品名称前缀
+    public function modifyGoodsName($callback, $output, $data): string
+    {
+        $view = '[Fashion]' . $output;
         return $view;
     }
 }
