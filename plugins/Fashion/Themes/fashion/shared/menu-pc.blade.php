@@ -1,4 +1,4 @@
-<ul class="navbar-nav mx-auto">
+<ul class="navbar-nav mx-auto" style="color: rgba(255, 255, 255, 1);">
   @hook('header.menu.before')
   @foreach ($menu_content as $menu)
     @if ($menu['name'])

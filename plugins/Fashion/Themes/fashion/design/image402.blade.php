@@ -11,12 +11,13 @@
       @endif
       <div class="module-image-info d-grid grid-4">
         <div class="image-402-1">
-          <a class="image-wrap" href="{{ $content['images'][0]['link']['link'] ?? '' }}">
+        <div class="img-name"><span>{{ $content['sub_title'][locale()] }}</span></div>
+          <!-- <a class="image-wrap" href="{{ $content['images'][0]['link']['link'] ?? '' }}">
             <img src="{{ $content['images'][0]['image'] }}" class="img-fluid">
             @if ($content['images'][0]['title'][locale()] ?? false)
               <div class="img-name"><span>{{ $content['images'][0]['title'][locale()] }}</span></div>
             @endif
-          </a>
+          </a> -->
         </div>
         <div class="image-402-2">
           <a class="image-wrap" href="{{ $content['images'][1]['link']['link'] ?? '' }}">
