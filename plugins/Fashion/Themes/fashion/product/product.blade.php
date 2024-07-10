@@ -204,7 +204,7 @@
     </div>
 
     <div class="product-description product-mb-block {{ $iframeClass }}">
-      <div class="nav nav-tabs nav-overflow justify-content-start justify-content-md-center border-bottom mb-3">
+      <div class="nav nav-tabs nav-overflow justify-content-start justify-content-md-start border-bottom mb-3">
         <a class="nav-link fw-bold active fs-5" data-bs-toggle="tab" href="#product-description">
           {{ __('shop/products.product_details') }}
         </a>
