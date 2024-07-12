@@ -1,7 +1,7 @@
 @unless ($breadcrumbs->isEmpty())
 <div class="breadcrumb-wrap">
-  <div class="container">
-    <nav aria-label="breadcrumb">
+  <div class="container" style="height: 99px;">
+    <nav aria-label="breadcrumb" style="padding-top: 30px;">
       <ol class="breadcrumb">
         @foreach ($breadcrumbs as $breadcrumb)
           @if (isset($breadcrumb['url']) && $breadcrumb['url'])

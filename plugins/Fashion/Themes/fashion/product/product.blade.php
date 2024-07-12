@@ -45,7 +45,7 @@
                 </div>
               </div>
             </div>
-            <div class="right" id="zoom">
+            <div class="right" id="zoom" style="border-radius: 15px;">
               @include('product.product-video')
               <div class="product-img"><img :src="images.length ? images[0].preview : '{{ asset('image/placeholder.png') }}'" class="img-fluid"></div>
             </div>
