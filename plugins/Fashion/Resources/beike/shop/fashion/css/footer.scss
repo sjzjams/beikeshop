@@ -9,7 +9,7 @@
  */
 
 footer {
-  background: #f6f6f8;
+  background: #282931;
   margin-top: 1rem;
   position: relative;
   overflow: hidden;
@@ -32,8 +32,8 @@ footer {
   }
 
   .services-wrap {
-    padding: 2.2rem 0;
-    border-bottom: 1px solid #e7e7e7;
+    padding: 3.2rem 0;
+    // border-bottom: 1px solid #e7e7e7;
 
     @media (max-width:768px) {
       padding: .5rem 0;
@@ -92,7 +92,7 @@ footer {
     // }
 
     a {
-      color: #666;
+      color: rgba(255, 255, 255, 1);
 
       &:hover {
         color: $primary;

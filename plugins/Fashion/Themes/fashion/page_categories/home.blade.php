@@ -10,6 +10,25 @@
 
   <div class="container">
     <div class="row">
+    @if ($active_page_categories)
+        <div class="col-lg-3 col-12">
+          <div class="card mb-3 shadow-sm h-min-300 x-fixed-top">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title">{{ __('product.category') }}</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                @foreach ($active_page_categories as $category)
+                  <li class="list-group-item p-0">
+                    <a href="{{ shop_route('page_categories.show', [$category->id]) }}"
+                      class="p-2 list-group-item-action nav-link">{{ $category->description->title }}</a>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          </div>
+        </div>
+      @endif
       <div class="col-lg-9 col-12">
         <div class="card mb-4 shadow-sm h-min-600">
           <div class="card-body">
@@ -37,26 +56,6 @@
           </div>
         </div>
       </div>
-
-      @if ($active_page_categories)
-        <div class="col-lg-3 col-12">
-          <div class="card mb-3 shadow-sm h-min-300 x-fixed-top">
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <h5 class="card-title">{{ __('product.category') }}</h5>
-            </div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                @foreach ($active_page_categories as $category)
-                  <li class="list-group-item p-0">
-                    <a href="{{ shop_route('page_categories.show', [$category->id]) }}"
-                      class="p-2 list-group-item-action nav-link">{{ $category->description->title }}</a>
-                  </li>
-                @endforeach
-              </ul>
-            </div>
-          </div>
-        </div>
-      @endif
     </div>
   </div>
 @endsection

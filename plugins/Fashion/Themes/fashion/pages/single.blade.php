@@ -14,10 +14,35 @@
   <x-shop-breadcrumb type="page" :value="$page['id']" />
   <div class="container">
     <div class="row">
+    @if ($page->category)
+        <div class="col-lg-3 col-12">
+          <div class="card mb-3 shadow-sm h-min-300 x-fixed-top">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title">{{ __('product.category') }}</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <!-- @foreach ($active_page_categories as $category)
+                  <li class="list-group-item p-0">
+                    <a href="{{ shop_route('page_categories.show', [$category->id]) }}"
+                      class="p-2 list-group-item-action nav-link">{{ $category->description->title }}</a>
+                  </li>
+                @endforeach -->
+                @foreach ($category_pages as $page)
+                  <li class="list-group-item p-0">
+                    <a href="{{ type_route('page', $page) }}"
+                      class="p-2 list-group-item-action nav-link">{{ $page->description->title }}</a>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          </div>
+        </div>
+      @endif
       <div class="{{ $page->category ? "col-lg-9 col-12" : 'col-12' }}">
         <div class="card shadow-sm page-content">
           <div class="card-body h-min-600 p-lg-4">
-            <h2 class="mb-3">{{ $page->description->title }}</h2>
+            <h2 class="mb-3">{{ $page_format['title'] }}</h2>
 
             @if ($page->category)
               <div class="text-secondary opacity-75 mb-4">
@@ -54,25 +79,6 @@
         </div>
       </div>
 
-      @if ($page->category)
-        <div class="col-lg-3 col-12">
-          <div class="card mb-3 shadow-sm h-min-300 x-fixed-top">
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <h5 class="card-title">{{ __('product.category') }}</h5>
-            </div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                @foreach ($active_page_categories as $category)
-                  <li class="list-group-item p-0">
-                    <a href="{{ shop_route('page_categories.show', [$category->id]) }}"
-                      class="p-2 list-group-item-action nav-link">{{ $category->description->title }}</a>
-                  </li>
-                @endforeach
-              </ul>
-            </div>
-          </div>
-        </div>
-      @endif
     </div>
   </div>
 @endsection
