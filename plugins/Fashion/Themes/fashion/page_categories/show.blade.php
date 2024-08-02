@@ -22,12 +22,6 @@
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <!-- @foreach ($active_page_categories as $category)
-                  <li class="list-group-item p-0">
-                    <a href="{{ type_route('page_category', $category) }}"
-                      class="p-2 list-group-item-action nav-link">{{ $category->description->title }}</a>
-                  </li>
-                @endforeach -->
             @foreach ($category_pages as $page)
             <li class="list-group-item p-0">
               <a href="{{ type_route('page', $page) }}" class="p-2 list-group-item-action nav-link">{{ $page->description->title }}</a>
