@@ -1,21 +1,5 @@
 <header>
   @hook('header.before')
-  <!-- @hookwrapper('header.top.wrap')
-    <div>
-      这是fashion webpack run dev 编译
-    </div>
-    @endhookwrapper
-    @hookwrapper('header.top.test')
-      <div>
-        666
-      </div>
-      @endhookwrapper
-      @hookwrapper('header.top.blue')
-        <div>
-          777
-        </div>
-        @endhookwrapper -->
-
   <div class="top-wrap">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="left d-flex align-items-center">

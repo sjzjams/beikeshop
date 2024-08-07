@@ -18,27 +18,27 @@ class Bootstrap
      */
     public function boot(): void
     {
-        add_hook_blade('header.top.telephone', function ($callback, $output, $data) {
-            return '电话前' . $output . '电话后';
-        });
+        // add_hook_blade('header.top.telephone', function ($callback, $output, $data) {
+        //     return '电话前' . $output . '电话后';
+        // });
 
-        add_hook_blade('header.top.language', function ($callback, $output, $data) {
-            $view = '<div class="dropdown" style="color:red">' . $output . '</div>';
-            return $view;
-        });
+        // add_hook_blade('header.top.language', function ($callback, $output, $data) {
+        //     $view = '<div class="dropdown" style="color:red">' . $output . '</div>';
+        //     return $view;
+        // });
 
-        add_hook_blade('header.top.wrap', function ($callback, $output, $data) {
-            $view = '<div class="top-wrapfashion" style="color:red">' . $output . '</div>';
-            return $view;
-        });
-        add_hook_blade('header.top.test', function ($callback, $output, $data) {
-            $view = '<div class="top-wrap" style="color:green">' . $output . '</div>';
-            return $view;
-        });
+        // add_hook_blade('header.top.wrap', function ($callback, $output, $data) {
+        //     $view = '<div class="top-wrapfashion" style="color:red">' . $output . '</div>';
+        //     return $view;
+        // });
+        // add_hook_blade('header.top.test', function ($callback, $output, $data) {
+        //     $view = '<div class="top-wrap" style="color:green">' . $output . '</div>';
+        //     return $view;
+        // });
         
-        add_hook_blade('header.top.blue', [$this, 'headerTmp'], 1);
+        // add_hook_blade('header.top.blue', [$this, 'headerTmp'], 1);
 
-        add_hook_blade('product.detail.name', [$this, 'modifyGoodsName'], 1);
+        // add_hook_blade('product.detail.name', [$this, 'modifyGoodsName'], 1);
     }
 
     public function headerTmp($callback, $output, $data): string

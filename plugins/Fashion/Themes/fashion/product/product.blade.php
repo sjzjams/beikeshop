@@ -40,6 +40,7 @@
                   </div>
                 </div>
                 <div class="swiper-pager">
+                    <div class="swiper-pagination pc-pagination"></div>
                     <div class="swiper-button-next new-feature-slideshow-next"></div>
                     <div class="swiper-button-prev new-feature-slideshow-prev"></div>
                 </div>
@@ -85,7 +86,7 @@
           @hook('product.detail.price.after')
 
           @endhookwrapper
-          <div class="stock-and-sku mb-lg-4 mb-2">
+          <!-- <div class="stock-and-sku mb-lg-4 mb-2">
             @hookwrapper('product.detail.quantity')
             <div class="d-lg-flex">
               <span class="title text-muted">{{ __('product.quantity') }}:</span>
@@ -112,7 +113,7 @@
             @hookwrapper('product.detail.model')
             <div class="d-lg-flex" v-if="product.model"><span class="title text-muted">{{ __('shop/products.model') }}:</span> @{{ product.model }}</div>
             @endhookwrapper
-          </div>
+          </div> -->
           @if (0)
           <div class="rating-wrap d-lg-flex">
             <div class="rating">
@@ -148,7 +149,7 @@
             @if ($product['active'])
               <div class="quantity-btns">
                 @hook('product.detail.buy.before')
-                @hookwrapper('product.detail.quantity.input')
+                <!-- @hookwrapper('product.detail.quantity.input')
                 <div class="quantity-wrap">
                   <input type="text" class="form-control" :disabled="!product.quantity" onkeyup="this.value=this.value.replace(/\D/g,'')" v-model="quantity" name="quantity">
                   <div class="right">
@@ -156,10 +157,10 @@
                     <i class="bi bi-chevron-down"></i>
                   </div>
                 </div>
-                @endhookwrapper
+                @endhookwrapper -->
                 @hookwrapper('product.detail.add_to_cart')
                 <button
-                  class="btn btn-outline-dark ms-md-3 add-cart fw-bold"
+                  class="btn btn-dark ms-md-6 add-cart fw-bold col-6"
                   :product-id="product.id"
                   :product-price="product.price"
                   :disabled="!product.quantity"
@@ -167,7 +168,7 @@
                   ><i class="bi bi-cart-fill me-1"></i>{{ __('shop/products.add_to_cart') }}
                 </button>
                 @endhookwrapper
-                @hookwrapper('product.detail.buy_now')
+                <!-- @hookwrapper('product.detail.buy_now')
                 <button
                   class="btn btn-dark ms-3 btn-buy-now fw-bold"
                   :disabled="!product.quantity"
@@ -177,7 +178,7 @@
                   ><i class="bi bi-bag-fill me-1"></i>{{ __('shop/products.buy_now') }}
                 </button>
                 @endhookwrapper
-                @hook('product.detail.buy.after')
+                @hook('product.detail.buy.after') -->
               </div>
 
               @if (current_customer() || !request('iframe'))
@@ -186,10 +187,19 @@
                   <button class="btn btn-link ps-md-0 text-secondary" data-in-wishlist="{{ $product['in_wishlist'] }}" onclick="bk.addWishlist('{{ $product['id'] }}', this)">
                     <i class="bi bi-heart{{ $product['in_wishlist'] ? '-fill' : '' }} me-1"></i> <span>{{ __('shop/products.add_to_favorites') }}</span>
                   </button>
-                  <div>
-                    <i class="bi bi-heart{{ $product['in_wishlist'] ? '-fill' : '' }}"></i>
-                    <span>test</span>
-                  </div>
+                  <br/>
+                  <button class="btn btn-link ps-md-0 text-secondary" data-in-wishlist="{{ $product['in_wishlist'] }}">
+                  <!-- <i class="bi bi-check-circle"></i> -->
+                    <i class="bi bi-check-circle{{ $product['in_wishlist'] ? '-fill' : '' }} me-1"></i> <span>Free shipping and free returns</span>
+                  </button>
+                  <br/>
+                  <button class="btn btn-link ps-md-0 text-secondary" data-in-wishlist="{{ $product['in_wishlist'] }}">
+                    <i class="bi bi-check-circle{{ $product['in_wishlist'] ? '-fill' : '' }} me-1"></i> <span>30 day right of return</span>
+                  </button>
+                  <br/>
+                  <button class="btn btn-link ps-md-0 text-secondary" data-in-wishlist="{{ $product['in_wishlist'] }}">
+                    <i class="bi bi-check-circle{{ $product['in_wishlist'] ? '-fill' : '' }} me-1"></i> <span>Quick deliveries</span>
+                  </button>
                 </div>
                 @endhookwrapper
               @endif
@@ -447,6 +457,11 @@
       navigation: {
         nextEl: '.new-feature-slideshow-next',
         prevEl: '.new-feature-slideshow-prev',
+      },
+            // 如果需要分页器
+            pagination: {
+        el: '.pc-pagination',
+        clickable: true,
       },
       observer: true,
       observeParents: true
