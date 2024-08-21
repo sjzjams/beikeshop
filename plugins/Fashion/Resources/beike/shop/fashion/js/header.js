@@ -185,6 +185,27 @@ $(function () {
       }
     })
   }());
+  function isHomepage() {
+    // 获取当前页面的 URL
+    const url = window.location.href;
+
+    // 解析 URL
+    const parsedUrl = new URL(url);
+
+    // 检查路径是否为空或仅为 "/"
+    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '') {
+        return true; // 当前页面是主页
+    }
+
+    return false; // 当前页面不是主页
+}
+
+// 使用示例
+// if (isHomepage()) {
+//     console.log('当前页面是主页');
+// } else {
+//     console.log('当前页面不是主页');
+// }
 
   // PC/MB 头部滑动固定
   (function () {
@@ -192,17 +213,40 @@ $(function () {
     if (!pbHeader.length) return;
     const headerContentTop = pbHeader.offset().top;
     const headerContentHeight = pbHeader.outerHeight(true);
-    $(window).scroll(function () {
-      const scrollTop = $(this).scrollTop();
-      if (scrollTop > headerContentTop) {
-        pbHeader.addClass('fixed');
-        if (!$('.header-content-placeholder').length)
-          pbHeader.before('<div class="header-content-placeholder" style="height: ' + headerContentHeight + 'px"></div>');
-      } else {
-        pbHeader.removeClass('fixed');
-        $('.header-content-placeholder').remove();
-      }
-    })
+    if(!isHomepage()){
+      pbHeader.addClass('noHomeMyBackgroundColorClass')
+      pbHeader.removeClass('fixed');
+      $(window).scroll(function () {
+        const scrollTop = $(this).scrollTop();
+        
+        if (scrollTop > headerContentTop) {
+          pbHeader.addClass('noHomeMyBackgroundColorClass')
+          pbHeader.addClass('fixed');
+          if (!$('.header-content-placeholder').length)
+            // pbHeader.before('<div class="header-content-placeholder" style="height: ' + headerContentHeight + 'px"></div>');
+          pbHeader.before('<div class="header-content-placeholder" ></div>');
+  
+        } else {
+          pbHeader.addClass('noHomeMyBackgroundColorClass')
+          pbHeader.removeClass('fixed');
+          $('.header-content-placeholder').remove();
+        }
+      })
+    }else{
+      pbHeader.addClass('fixed');
+      pbHeader.addClass('homemyBackgroundColorClass')
+    }
+    
+    
   }());
+  // 使头部始终固定在顶部，无需检测滚动位置
+//   (function () {
+//     const pbHeader = $(window).width() > 768 ? $('.header-content') : $('.header-mobile');
+//     if (!pbHeader.length) return;
+//     // 判断是否是移动端,如果是pc执行
+
+//     pbHeader.addClass('fixed');
+//     // pbHeader.before('<div class="header-content-placeholder" style="height: ' + pbHeader.outerHeight(true) + 'px"></div>');
+// })();
 });
 

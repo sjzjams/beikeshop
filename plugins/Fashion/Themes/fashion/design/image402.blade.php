@@ -83,6 +83,7 @@
   /* 设定图片的固定尺寸 */
   @media (min-width: 768px) {
 
+
     /* 当屏幕宽度大于等于 768px 时 */
     .grid-item img {
       width: 701px;
@@ -93,17 +94,13 @@
       /* 保持图片的宽高比 */
     }
 
-    .overlay {
-      bottom: 35px;
-      /* 距离底部 35px */
-      left: 35px;
-      /* 距离左边 80px */
-    }
   }
 
   /* 移动端适配 */
   @media (max-width: 767px) {
-
+    .module-image-info-4 {
+      gap: 1.5rem;
+    }
     /* 当屏幕宽度小于 768px 时 */
     .grid-item img {
       width: 100%;
@@ -117,6 +114,12 @@
       /* 调整底部距离以适应小屏幕 */
       left: 10px;
       /* 调整左边距离以适应小屏幕 */
+      font-size: 14px;
+    }
+    .text::before {
+      width: 15px;
+      height: 15px;
+      margin-right: 6px;
     }
   }
 
@@ -182,8 +185,9 @@
 
     /* 当屏幕宽度小于 768px 时 */
     .module-image-info.grid-3 {
-      grid-template-columns: 1fr;
+      /* grid-template-columns: 1fr; */
       /* 单列布局 */
+      grid-template-rows: auto;
     }
 
     .image {
@@ -202,10 +206,45 @@
     .bottom-image {
       width: 100%;
       /* 图片宽度占满整个容器 */
-      height: auto;
+      /* height: auto; */
       /* 保持图片的宽高比 */
     }
   }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px; /* 间距 */
+}
+
+.item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 桌面端样式 */
+/* .item-1 { background-color: lightblue; }
+.item-2 { background-color: lightgreen; }
+.item-3 { background-color: lightyellow; } */
+
+/* 移动端样式 */
+@media (max-width: 768px) {
+
+    .item-1 {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 1;
+    }
+
+    .item-2 {
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 1;
+    }
+
+    .item-3 {
+        grid-column: 2 / span 2;
+        grid-row: 2 / span 1;
+    }
+}
 </style>
 <section class="module-item {{ $design ? 'module-item-design' : ''}}" id="module-{{ $module_id }}">
   @include('design._partial._module_tool')
@@ -222,7 +261,7 @@
       <div class="image-402-sub-title mt-n3">{{ $content['sub_title'][locale()] }}</div>
       @endif
       <div class="module-image-info-3 d-grid grid-4">
-        <div class="column text-column">
+        <div class="column text-column item-1">
           <p>
             You know what you want for your time on the mountain. .<br>
             You have the creativity and brilliant product ideas. That’s why we exist and build everything in collaboration with our customers.Our community’s feedback is the North star for the entire process – from initial sketches on a page to first tracks on a powder run. If something doesn’t get customer approval, it won’t make it on the mountain. It’s as simple as that. .<br>
@@ -230,18 +269,29 @@
             Probably not. We don’t want to follow what everyone else is doing. Instead, we innovate where we can, using our community of riders as our compass.We do our best to offer a variety of patterns and colourways so you can express yourself however you want. So whether you feel at home with other snow communities or brands, or you couldn’t feel further from someone else’s notion of ‘normal’ and ‘conventional’, you’re welcome here.
           </p>
         </div>
-        <div class="column image-column">
+        <div class="column image-column item-2">
           <img src="https://img.js.design/assets/img/666476adb0b03f7960296df1.jpg#77395376185f8fa73a553f121e0ba437" alt="Image 1" class="image rounded">
         </div>
-        <div class="column image-column double-images">
+        <div class="column image-column double-images item-3">
           <img src="https://img.js.design/assets/img/666476b084c4114ed2f88e66.jpg#8ed290d5d543bad6ec8a9d2018264d8c" alt="Image 2" class="top-image rounded">
           <img src="https://img.js.design/assets/img/666476b3762c95b42d31fbe1.jpg#43ceb73bf5c469683fab484650770e20" alt="Image 3" class="bottom-image rounded">
         </div>
+        <!-- <div class="grid-container">
+    <div class="item item-1">
+    <img src="https://img.js.design/assets/img/666476adb0b03f7960296df1.jpg#77395376185f8fa73a553f121e0ba437" alt="Image 1" class="image rounded">
+    </div>
+    <div class="item item-2">
+    <img src="https://img.js.design/assets/img/666476b084c4114ed2f88e66.jpg#8ed290d5d543bad6ec8a9d2018264d8c" alt="Image 2" class="top-image rounded">
+    <img src="https://img.js.design/assets/img/666476b3762c95b42d31fbe1.jpg#43ceb73bf5c469683fab484650770e20" alt="Image 3" class="bottom-image rounded">
+      
+    </div>
+
+</div> -->
       </div>
     </div>
     <!--三列格栅布局end-->
     <!--两行两列栅格展示四个分类-->
-    <div class="container" style="margin-top: 86px;">
+    <div class="container" style="margin-top: 40px;">
       @if ($content['title'][locale()] ?? false)
       <div class="module-title">Explore the Line</div>
       @endif
@@ -250,13 +300,13 @@
       @endif
       <div class="module-image-info-4 d-grid grid-4">
         <a href="path/to/link1.html" class="grid-item" id="item1">
-          <img src="https://img.js.design/assets/img/666476a94edeb846eb301eea.jpg#82e36b88d23b5a88f2cf2f43e03a34fb" alt="Image 1" class="img-fluid rounded">
+          <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 1" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Women</span>
           </div>
         </a>
         <a href="path/to/link2.html" class="grid-item" id="item2">
-          <img src="https://img.js.design/assets/img/666476a813f293d022f806a5.jpg#636ca5f39f90bd828f957c54cc2d53dd" alt="Image 2" class="img-fluid rounded">
+          <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 2" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Men</span>
           </div>
@@ -298,7 +348,7 @@
         /* 使用网格布局 */
         grid-template-rows: repeat(3, 1fr);
         /* 三行等高 */
-        gap: 1.6rem;
+        /* gap: 1.6rem; */
         /* 减小行之间的间距 */
         font-size: 14px;
         font-family: 'SFArabic', sans-serif;
@@ -384,7 +434,7 @@
       }
     </style>
     <!--底部两列展示-->
-    <div class="container" style="margin-top: 86px;">
+    <div class="container" style="margin-top: 40px;">
       @if ($content['title'][locale()] ?? false)
       <div class="module-title">Contact Us</div>
       @endif

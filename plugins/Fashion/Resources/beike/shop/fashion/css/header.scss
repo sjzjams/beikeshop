@@ -75,10 +75,11 @@ header {
 
   .header-content {
     position: relative;
-    background-color: rgba(40, 41, 49, 1);
+    // background-color: rgba(40, 41, 49, 1);
+    // background-color: rgb(40 41 49 / 56%);
     padding: 2.5rem 0;
     transition: all .2s ease-in-out;
-    border-bottom: 1px solid #eee;
+    //border-bottom: 1px solid #eee;
 
     // body:not(.page-home) & {
     //   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, .04);

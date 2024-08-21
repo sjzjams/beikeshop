@@ -1,6 +1,14 @@
+<style>
+  .homemyBackgroundColorClass {
+    background-color: rgb(40 41 49 / 56%);
+}
+.noHomeMyBackgroundColorClass {
+  background-color: rgba(40, 41, 49, 1);
+}
+</style>
 <header>
   @hook('header.before')
-  <div class="top-wrap">
+  <!-- <div class="top-wrap">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="left d-flex align-items-center">
         @hookwrapper('header.top.currency')
@@ -69,7 +77,7 @@
         @hook('header.top.right')
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="header-content d-none d-lg-block">
     <div class="container-fluid navbar-expand-lg">
