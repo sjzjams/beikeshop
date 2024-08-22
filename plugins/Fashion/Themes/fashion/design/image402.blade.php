@@ -270,11 +270,13 @@
           </p>
         </div>
         <div class="column image-column item-2">
-          <img src="https://img.js.design/assets/img/666476adb0b03f7960296df1.jpg#77395376185f8fa73a553f121e0ba437" alt="Image 1" class="image rounded">
+          <img src="{{ asset('image/fashionimg/about1.png') }}" alt="Image 1" class="image rounded">
         </div>
         <div class="column image-column double-images item-3">
-          <img src="https://img.js.design/assets/img/666476b084c4114ed2f88e66.jpg#8ed290d5d543bad6ec8a9d2018264d8c" alt="Image 2" class="top-image rounded">
-          <img src="https://img.js.design/assets/img/666476b3762c95b42d31fbe1.jpg#43ceb73bf5c469683fab484650770e20" alt="Image 3" class="bottom-image rounded">
+          <!-- <img src="{{ asset('image/fashionimg/about2.png') }}" alt="Image 2" class="top-image rounded">
+          <img src="{{ asset('image/fashionimg/about3.png') }}" alt="Image 3" class="bottom-image rounded"> -->
+          <img src="{{ asset('image/fashionimg/about2.png') }}" alt="Image 2" class="image rounded">
+          <img src="{{ asset('image/fashionimg/about3.png') }}" alt="Image 3" class="image rounded">
         </div>
         <!-- <div class="grid-container">
     <div class="item item-1">
@@ -300,25 +302,25 @@
       @endif
       <div class="module-image-info-4 d-grid grid-4">
         <a href="/categories/100003" class="grid-item" id="item1">
-          <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 1" class="img-fluid rounded">
+          <img src="{{ asset('image/fashionimg/skis.png') }}" alt="Image 1" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Women</span>
           </div>
         </a>
         <a href="/categories/100005" class="grid-item" id="item2">
-          <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 2" class="img-fluid rounded">
+          <img src="{{ asset('image/fashionimg/boards.png') }}" alt="Image 2" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Men</span>
           </div>
         </a>
         <a href="/categories/100012" class="grid-item" id="item3">
-          <img src="https://img.js.design/assets/img/666476b24edeb846eb301f7e.jpg#75a037ebcd0834ed146a1c08a7d210c0" alt="Image 3" class="img-fluid rounded">
+          <img src="{{ asset('image/fashionimg/men.png') }}" alt="Image 3" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Snowboards</span>
           </div>
         </a>
         <a href="/categories/100018" class="grid-item" id="item4">
-          <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 4" class="img-fluid rounded">
+          <img src="{{ asset('image/fashionimg/women.png') }}" alt="Image 4" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Skis</span>
           </div>
@@ -487,7 +489,7 @@
             </div>
           </div>
           <div class="column image-column">
-            <img src="https://img.js.design/assets/img/666476b32a47bf0614f454dd.jpg#8badbcd462187b2ee050641f1604746a" alt="Image 1" class="image img-fluid rounded">
+            <img src="{{ asset('image/fashionimg/Mask-group.png') }}" alt="Image 1" class="image img-fluid rounded">
           </div>
         </div>
       </div>

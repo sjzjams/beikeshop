@@ -202,8 +202,8 @@ header {
       left: 0;
       right: 0;
       z-index: 999;
-      box-shadow: 0 8px 14px 0 rgba(0, 0, 0, .1);
-      background: #fff;
+      box-shadow: 0 8px 14px 0 rgba(40, 41, 49, 1);
+      // background: #fff;
       border-color: transparent;
     }
 
@@ -214,7 +214,7 @@ header {
       justify-content: space-between;
 
       > div {
-        width: 33.33%;
+        // width: 33.33%;
 
         &.center a {
           display: flex;
@@ -230,10 +230,11 @@ header {
 
       .left {
         display: flex;
-        align-items: center;
-
+        // align-items: center;
+        width: 30%;
         > div {
           cursor: pointer;
+          color: rgba(0, 0, 0, 0.85);
           > i {
             font-size: 1.5rem;
             line-height: 1;
@@ -242,7 +243,7 @@ header {
 
         .mobile-open-search {
           margin-left: 12px;
-
+          color: rgba(255, 255, 255, 0.6);
           > i {
             font-size: 1.1rem;
           }
@@ -252,7 +253,8 @@ header {
       .right {
         display: flex;
         justify-content: flex-end;
-
+        width: 80%;
+        color: rgba(255, 255, 255, 0.6);
         .m-cart {
           .cart-badge-quantity {
             left: 11px;

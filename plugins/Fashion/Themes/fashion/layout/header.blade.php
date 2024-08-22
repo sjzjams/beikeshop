@@ -1,10 +1,57 @@
 <style>
   .homemyBackgroundColorClass {
     background-color: rgb(40 41 49 / 56%);
-}
-.noHomeMyBackgroundColorClass {
-  background-color: rgba(40, 41, 49, 1);
-}
+  }
+
+  .noHomeMyBackgroundColorClass {
+    background-color: rgba(40, 41, 49, 1);
+  }
+
+  .search {
+    position: relative;
+    width: 190px;
+  }
+
+  .search input {
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none !important;
+  }
+
+  .search input:focus {
+    box-shadow: none;
+  }
+
+  .search .fa-search {
+    position: absolute;
+    top: 5px;
+    right: 9px
+  }
+
+  .searchinput::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .searchpc {
+    position: relative;
+    width: 310px;
+  }
+
+  .searchpc input {
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none !important;
+  }
+
+  .searchpc input:focus {
+    box-shadow: none;
+  }
+
+  .searchpc .fa-search {
+    position: absolute;
+    top: 5px;
+    right: 9px
+  }
+
 </style>
 <header>
   @hook('header.before')
@@ -89,10 +136,14 @@
       <div class="menu-wrap">
         @include('shared.menu-pc')
       </div>
-      <div class="right-btn">
-        <ul class="navbar-nav flex-row">
+      <div class="right-btn" style="width: 30%;">
+        <ul class="navbar-nav flex-row align-items-center" style="color: rgba(255, 255, 255, 0.6);">
           @hookwrapper('header.menu.icon')
-          <li class="nav-item"><a href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample" class="nav-link"><i class="iconfont">&#xe8d6;</i></a></li>
+          <li class="nav-item">
+          <div class="searchpc" href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample"> <input type="text" class="searchinput form-control" placeholder="Search p roproducts"> <i class="fa fa-search iconfont">&#xe8d6;</i> </div>
+
+            <!-- <a href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample" class="nav-link"><i class="iconfont">&#xe8d6;</i></a> -->
+          </li>
           <li class="nav-item"><a href="{{ shop_route('account.wishlist.index') }}" class="nav-link"><i class="iconfont">&#xe662;</i></a></li>
           <li class="nav-item dropdown">
             <a href="{{ shop_route('account.index') }}" class="nav-link"><i class="iconfont">&#xe619;</i></a>
@@ -140,21 +191,24 @@
     <div class="mobile-content">
       <div class="left">
         <div class="mobile-open-menu"><i class="bi bi-list"></i></div>
-        <div class="mobile-open-search" href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample">
-          <i class="iconfont">&#xe8d6;</i>
-        </div>
+        <a href="{{ shop_route('home.index') }}" class="nav-link ms-2 m-cart position-relative">
+          <img src="{{ image_origin(system_setting('base.logo')) }}" class="img-fluid">
+        </a>
       </div>
-      <div class="center"><a href="{{ shop_route('home.index') }}">
-          <img src="{{ image_origin(system_setting('base.logo')) }}" class="img-fluid"></a>
-      </div>
-      <div class="right">
-        <a href="{{ shop_route('account.index') }}" class="nav-link mb-account-icon">
+      <div class="right align-items-center">
+        <div class="search" href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample"> <input type="text" class="searchinput form-control" placeholder="Search p roproducts"> <i class="fa fa-search iconfont">&#xe8d6;</i> </div>
+
+        <a href="{{ shop_route('carts.index') }}" class="nav-link ms-3 m-cart position-relative">
+          <i class="iconfont">&#xe634;</i>
+          <span class="cart-badge-quantity"></span>
+        </a>
+        <a href="{{ shop_route('account.index') }}" class="nav-link ms-3 m-cart position-relative">
           <i class="iconfont">&#xe619;</i>
           @if (strstr(current_route(), 'shop.account'))
           <span></span>
           @endif
         </a>
-        <a href="{{ shop_route('carts.index') }}" class="nav-link ms-3 m-cart position-relative"><i class="iconfont">&#xe634;</i> <span class="cart-badge-quantity"></span></a>
+
       </div>
     </div>
   </div>
