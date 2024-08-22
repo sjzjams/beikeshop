@@ -299,25 +299,25 @@
       <div class="image-402-sub-title mt-n3">Take you on a journey through the snow</div>
       @endif
       <div class="module-image-info-4 d-grid grid-4">
-        <a href="path/to/link1.html" class="grid-item" id="item1">
+        <a href="/categories/100003" class="grid-item" id="item1">
           <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 1" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Women</span>
           </div>
         </a>
-        <a href="path/to/link2.html" class="grid-item" id="item2">
+        <a href="/categories/100005" class="grid-item" id="item2">
           <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 2" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Men</span>
           </div>
         </a>
-        <a href="path/to/link3.html" class="grid-item" id="item3">
+        <a href="/categories/100012" class="grid-item" id="item3">
           <img src="https://img.js.design/assets/img/666476b24edeb846eb301f7e.jpg#75a037ebcd0834ed146a1c08a7d210c0" alt="Image 3" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Snowboards</span>
           </div>
         </a>
-        <a href="path/to/link4.html" class="grid-item" id="item4">
+        <a href="/categories/100018" class="grid-item" id="item4">
           <img src="https://img.js.design/assets/img/666476aeea46b130510c46d9.jpg#cffe3bf774d1e73850be2c37e6982714" alt="Image 4" class="img-fluid rounded">
           <div class="overlay">
             <span class="text">Skis</span>
@@ -441,6 +441,8 @@
       @if ($content['sub_title'][locale()] ?? false)
       <div class="image-402-sub-title mt-n3"> From help with your order to the best ski resorts to visit</div>
       @endif
+      <!--如果不是移动端展示开始-->
+      @if(!is_mobile())
       <div class="module-image-info-2 d-grid grid-4">
         <div class="grid-2-layout">
           <div class="column text-column">
@@ -489,7 +491,17 @@
           </div>
         </div>
       </div>
+      @else
+      <div>
+        移动端
+      </div>
+      @endif
+      <!--如果是移动端展示end-->
     </div>
+    
+
+    
+
     <!--底部两列展示结束-->
   </div>
 </section>
