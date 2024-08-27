@@ -59,6 +59,7 @@ return [
     'restore'              => '恢复',
     'name'                 => '名称',
     'image'                => '图片',
+    'dimage'               => 'Product-Details-展示图片',
     'data'                 => '数据',
     'view'                 => '查看',
     'phone'                => '电话',

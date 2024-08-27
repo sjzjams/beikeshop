@@ -80,6 +80,27 @@
               </draggable>
               <div class="help-text mb-1 mt-1">{{ __('admin/product.image_help') }}</div>
             </x-admin::form.row>
+            
+            <!-- <x-admin::form.row title="{{ __('common.dimage') }}">
+              <draggable
+                element="div"
+                ghost-class="dragabble-ghost"
+                class="product-images d-flex flex-wrap"
+                :list="form.dimages"
+                :options="{animation: 200, handle: '.product-item'}"
+                >
+                <div v-for="dimage, index in form.dimages" :key="index" class="wh-80 rounded-2 product-item position-relative me-2 mb-2 border d-flex justify-content-center align-items-center max-h-100 overflow-hidden">
+                  <div class="position-absolute top-0 end-0">
+                    <button class="btn btn-danger btn-sm wh-20 p-0" @click="removeDImages(index)" type="button"><i class="bi bi-trash"></i></button>
+                  </div>
+                  <img :src="thumbnail(image)" class="img-fluid rounded-2">
+                  <input type="hidden" name="dimages[]" :value="dimage">
+                </div>
+                <div v-if="!form.dimages.length" class="d-none"><input type="hidden" name="dimages[]" value=""></div>
+                <div class="set-product-img wh-80 rounded-2" @click="addProductDImages"><i class="bi bi-plus fs-1 text-muted"></i></div>
+              </draggable>
+              <div class="help-text mb-1 mt-1">{{ __('admin/product.image_help') }}</div>
+            </x-admin::form.row> -->
 
             <x-admin::form.row title="{{ __('product.video') }}">
               <div class="wp-400 border">
@@ -292,8 +313,10 @@
                               <input v-for="(variantValueIndex, j) in sku.variants" type="hidden"
                                 :name="'skus[' + skuIndex + '][variants][' + j + ']'" :value="variantValueIndex">
                             </td>
-                            <td><input type="text" class="form-control" v-model="sku.model" :name="'skus[' + skuIndex + '][model]'"
-                                placeholder="{{ __('admin/product.model') }}"></td>
+                            <td>
+                              <input type="text" class="form-control" v-model="sku.model" :name="'skus[' + skuIndex + '][model]'"
+                                placeholder="{{ __('admin/product.model') }}">
+                              </td>
                             <td>
                               <input type="text" class="form-control" v-model="sku.sku" :name="'skus[' + skuIndex + '][sku]'" placeholder="sku" :style="sku.is_default ? 'margin-top: 19px;' : ''" required>
                               <span role="alert" class="invalid-feedback">{{ __('common.error_required', ['name' => 'sku']) }}</span>
@@ -341,6 +364,68 @@
               </div>
               @endhookwrapper
             </div>
+
+            <div>
+            <h5 class="border-bottom pb-3 mb-4">Product-Details-展示图片</h5>
+            <x-admin::form.row title="配置Product-Detailst">
+              <div class="pdf-table">
+                <table class="table table-bordered w-max-600">
+                  <thead>
+                  <th>图片</th>
+                    <th>标题</th>
+                    <th>描述</th>
+                    <th width="50px">操作</th></thead>
+                  <tbody>
+                    <tr v-for="(detail, detailIndex) in form.details" :key="detailIndex">
+                      <td>
+                      <!-- <div class="product-images d-flex flex-wrap" style="margin-right: -8px">
+                                <div class="product-item wh-40 border d-flex justify-content-center align-items-center me-2 mb-2 position-relative">
+                                  <div class="position-absolute top-0 end-0">
+                                    <button class="btn btn-danger btn-sm wh-20 p-0" @click="removeSkuImages(skuIndex, index)" type="button"><i class="bi bi-trash"></i></button>
+                                  </div>
+                                  <img :src="thumbnail(detail.images)" class="img-fluid" style="max-height: 40px;">
+                                  <input type="hidden" class="form-control" v-model="detail.images" :name="'detail[' + index + ']images'" placeholder="image">
+                                </div>
+                                <div class="border d-flex justify-content-center align-items-center border-dashed bg-light wh-40" role="button" @click="addProductImages(index)"><i class="bi bi-plus fs-3 text-muted"></i></div>
+                              </div> -->
+
+
+                              <div class="product-images d-flex flex-wrap" style="margin-right: -8px">
+                                <div v-for="image, index in detail.images" :key="index" class="product-item wh-40 border d-flex justify-content-center align-items-center me-2 mb-2 position-relative">
+                                  <div class="position-absolute top-0 end-0">
+                                    <button class="btn btn-danger btn-sm wh-20 p-0" @click="removeDetailImages(detailIndex, index)" type="button"><i class="bi bi-trash"></i></button>
+                                  </div>
+                                  <img :src="thumbnail(image)" class="img-fluid" style="max-height: 40px;">
+                                  <input type="hidden" class="form-control" v-model="detail.images[index]" :name="'detail[' + detailIndex + '][images][]'" placeholder="image">
+                                </div>
+                                <div class="border d-flex justify-content-center align-items-center border-dashed bg-light wh-40" role="button" @click="addDetailImages(detailIndex)"><i class="bi bi-plus fs-3 text-muted"></i></div>
+                              </div>
+                      </td>
+                      <td>
+                    
+                        
+                              <input type="text" class="form-control" v-model="detail.title" :name="'detail[' + detailIndex + '][title]'"
+                                placeholder="标题">
+                      </td>
+                      <td>
+                      <input type="text" class="form-control" v-model="detail.desc" :name="'detail[' + detailIndex + '][desc]'"
+                      placeholder="描述">
+                    
+                    </td>
+                      <td class="text-end">
+                        <i @click="form.details.splice(detailIndex, 1)" class="bi bi-x-circle fs-4 text-danger cursor-pointer"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3"></td>
+                      <td class="text-end"><i class="bi bi-plus-circle cursor-pointer fs-4" @click="addDetails"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </x-admin::form.row>
+            </div>
+
           </div>
           <div class="tab-pane fade" id="tab-descriptions">
             <h6 class="border-bottom pb-3 mb-4">{{ __('admin/product.product_details') }}</h6>
@@ -585,6 +670,7 @@
           categories: @json(old('categories', $category_ids) ?? []),
           attributes: @json(old('pickups', $product_attributes) ?? []),
           images: @json(old('images', $product->images) ?? []),
+          dimages: @json(old('dimages', $product->dimages) ?? []),
           video: {
             path: @json(old('video', $product->video ?? '')),
             url: '',
@@ -599,6 +685,7 @@
           status: @json($product->skus[0]['status'] ?? false),
           variables: [],
           skus: @json(old('skus', $product->skus) ?? []),
+          details: @json(old('details', $product->details) ?? []),  // 新增详情页ProductDetails展示功能
         },
 
         variablesBatch: {
@@ -610,7 +697,9 @@
           cost_price: '',
           quantity: '',
           image: '',
+          dimage: '',
           status: false,
+          detail: '',
         },
 
         relations: {
@@ -689,6 +778,7 @@
         let variables = @json(old('variables', $product->variables) ?? []);
         // 修复表单提交报错后，编辑好的规格不存在问题，old 返回的规格是字符串，variables 如果是字符串，需要转数组
         if (typeof variables === 'string') {
+          
           variables = JSON.parse(variables);
         }
 
@@ -836,6 +926,28 @@
           }, {mime: 'image'})
         },
 
+        // 添加详情页图片
+        addDetailImages(detailIndex) {
+          bk.fileManagerIframe(images => {
+            if(!isNaN(detailIndex)){
+              if (this.form.details[detailIndex].images === null) {
+                this.form.details[detailIndex].images = images.map(e => e.path)
+              } else {
+                this.form.details[detailIndex].images.push(...images.map(e => e.path))
+              }
+              return;
+            }
+
+            this.form.images.push(...images.map(e => e.path))
+          }, {mime: 'image'})
+        },
+
+        addProductDImages() {
+          bk.fileManagerIframe(images => {
+            this.form.dimages.push(...images.map(e => e.path))
+          }, {mime: 'dimage'})
+        },
+
         addProductVideo() {
           bk.fileManagerIframe(images => {
             this.form.video.path = images[0].path
@@ -847,8 +959,16 @@
           this.form.images.splice(index, 1)
         },
 
+        removeDImages(index) {
+          this.form.dimages.splice(index, 1)
+        },
+
         removeSkuImages(variantIndex, index) {
           this.form.skus[variantIndex].images.splice(index, 1)
+        },
+
+        removeDetailImages(detailIndex, index) {
+          this.form.details[detailIndex].images.splice(index, 1)
         },
 
         batchSettingVariant() {
@@ -1010,6 +1130,9 @@
 
         addAttribute() {
           this.form.attributes.push({attribute:{id:'',name:''}, attribute_value: {id:'',name:''}})
+        },
+        addDetails() {
+          this.form.details.push({title: '', desc: '', images: []})
         },
 
         attributeQuerySearch(keyword, cb) {

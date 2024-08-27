@@ -227,6 +227,43 @@
       </div>
       <div class="tab-content">
         <div class="tab-pane fade show active" id="product-description" role="tabpanel">
+          @if($product['details'])
+        <div class="container position-relative" style="padding-bottom: 40px;">
+          <!-- <div class="title text-center">Details</div> -->
+          <div class="product swiper-style-plus">
+            <div class="swiper details-relations-swiper">
+              <div class="swiper-wrapper">
+                <!--获取product的details 绑定到视图-->
+                @foreach ($product['details'] as $detail)
+                <div class="swiper-slide">
+                  <div class="product-wrap">
+                    <div class="image">
+                      <a href="#">
+                      <div class="image-old">
+                        <img
+                          data-sizes="auto"
+                          data-src="{{ $detail['images'][0] ?? image_resize('', 400, 400) }}"
+                          src="{{ image_resize('', 400, 400) }}"
+                          class="img-fluid lazyload">
+                      </div>
+                      </a>
+                    </div>
+                    <div class="product-bottom-info">
+                      <div class="product-name">{{ $detail['title'] }}</div>
+                      <div>{{ $detail['desc'] }}</div>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+              </div>
+            </div>
+            <!-- <div class="swiper-pagination relations-pagination"></div> -->
+            <div class="swiper-scrollbar details-swiper-scrollbar"></div>
+            <div class="swiper-button-prev details-relations-swiper-prev"></div>
+            <div class="swiper-button-next details-relations-swiper-next"></div>
+          </div>
+      </div>
+      @endif
           {!! $product['description'] !!}
         </div>
         <div class="tab-pane fade" id="product-attributes" role="tabpanel">
@@ -265,7 +302,8 @@
               @endforeach
             </div>
           </div>
-          <div class="swiper-pagination relations-pagination"></div>
+          <!-- <div class="swiper-pagination relations-pagination"></div> -->
+          <div class="swiper-scrollbar"></div>
           <div class="swiper-button-prev relations-swiper-prev"></div>
           <div class="swiper-button-next relations-swiper-next"></div>
         </div>
@@ -298,6 +336,7 @@
           price_format: "",
           quantity: 0,
           sku: "",
+          details: @json($product['details']),
         },
         quantity: 1,
         source: {
@@ -470,6 +509,10 @@
     var relationsSwiper = new Swiper ('.relations-swiper', {
       watchSlidesProgress: true,
       autoHeight: true,
+      slidesPerView: 1,
+      centeredSlides: false,
+      slidesPerGroupSkip: 1,
+      grabCursor: true,
       breakpoints:{
         320: {
           slidesPerView: 2,
@@ -486,6 +529,38 @@
         nextEl: '.relations-swiper-next',
         prevEl: '.relations-swiper-prev',
       },
+      scrollbar: { el: '.swiper-scrollbar' },
+      // 如果需要分页器
+      pagination: {
+        el: '.relations-pagination',
+        clickable: true,
+      },
+    })
+    var relationsSwiper1 = new Swiper ('.details-relations-swiper', {
+      watchSlidesProgress: true,
+      autoHeight: true,
+      slidesPerView: 1,
+      centeredSlides: false,
+      slidesPerGroupSkip: 1,
+      grabCursor: true,
+      dragSize: 30,   //滚动条滑块的长度
+      breakpoints:{
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      },
+      spaceBetween: 30,
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: '.details-relations-swiper-next',
+        prevEl: '.details-relations-swiper-prev',
+      },
+      scrollbar: { el: '.details-swiper-scrollbar' },
 
       // 如果需要分页器
       pagination: {

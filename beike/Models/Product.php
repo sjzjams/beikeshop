@@ -55,6 +55,11 @@ class Product extends Base
     {
         return $this->hasMany(ProductAttribute::class);
     }
+    // 新增details
+    public function details(): HasMany
+    {
+        return $this->hasMany(ProductDetails::class);
+    }
 
     public function masterSku()
     {
@@ -93,4 +98,11 @@ class Product extends Base
 
         return $images[0] ?? '';
     }
+
+    // public function getDimagesAttribute()
+    // {
+    //     $dimages = $this->dimages ?? [];
+
+    //     return $dimages[0] ?? '';
+    // }
 }

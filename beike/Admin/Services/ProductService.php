@@ -42,10 +42,13 @@ class ProductService
             $product->updated_at = now();
             $product->save();
 
+            // 处理ProductDetails
+            $detailsData = $data['detail'] ?? [];
             if ($isUpdating) {
                 $product->skus()->delete();
                 $product->descriptions()->delete();
                 $product->attributes()->delete();
+                $product->details()->delete();
             }
 
             $descriptions = [];
@@ -71,6 +74,13 @@ class ProductService
 
             $product->categories()->sync($data['categories'] ?? []);
             $product->relations()->sync($data['relations'] ?? []);
+
+            $details = [];
+            foreach ($detailsData as $locale => $detail) {
+                $detail['locale'] = $locale;
+                $details[]        = $detail;
+            }
+            $product->details()->createMany($details);
 
             DB::commit();
 
