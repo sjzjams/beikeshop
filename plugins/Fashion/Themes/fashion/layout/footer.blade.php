@@ -1,4 +1,4 @@
-<footer>
+<footer class="_b1">
   @hook('footer.before')
 
   <div class="container">

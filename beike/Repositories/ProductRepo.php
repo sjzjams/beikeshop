@@ -38,7 +38,7 @@ class ProductRepo
         if (is_int($product)) {
             $product = Product::query()->findOrFail($product);
         }
-        $product->load('description', 'skus', 'masterSku', 'brand', 'relations', 'details');
+        $product->load('description', 'skus', 'masterSku', 'brand', 'relations', 'details', 'techs');
 
         hook_filter('repo.product.get_detail', $product);
 

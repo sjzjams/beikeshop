@@ -1,0 +1,38 @@
+._kd {
+    position: fixed;
+    z-index: calc(var(--index-splash-fade) - 1);
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none;
+    bottom: 20px;
+    right: 20px;
+    max-width: 48px;
+    width: 48px;
+    max-height: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .06), 0 2px 32px 0 rgba(0, 0, 0, .16);
+    transition: transform 167ms cubic-bezier(.33, 0, 0, 1);
+    box-sizing: content-box
+}
+
+._kd:hover {
+    transition: transform .25s cubic-bezier(.33, 0, 0, 1);
+    transform: scale(1.1)
+}
+
+._kd div {
+    opacity: 1;
+    transform: rotate(0deg) scale(1)
+}
+
+._kd ._ke {
+    height: 24px;
+    width: 24px
+}
+
+._kd ._ke path {
+    fill: #fff
+}

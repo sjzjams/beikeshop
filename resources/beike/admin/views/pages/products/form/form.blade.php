@@ -378,18 +378,6 @@
                   <tbody>
                     <tr v-for="(detail, detailIndex) in form.details" :key="detailIndex">
                       <td>
-                      <!-- <div class="product-images d-flex flex-wrap" style="margin-right: -8px">
-                                <div class="product-item wh-40 border d-flex justify-content-center align-items-center me-2 mb-2 position-relative">
-                                  <div class="position-absolute top-0 end-0">
-                                    <button class="btn btn-danger btn-sm wh-20 p-0" @click="removeSkuImages(skuIndex, index)" type="button"><i class="bi bi-trash"></i></button>
-                                  </div>
-                                  <img :src="thumbnail(detail.images)" class="img-fluid" style="max-height: 40px;">
-                                  <input type="hidden" class="form-control" v-model="detail.images" :name="'detail[' + index + ']images'" placeholder="image">
-                                </div>
-                                <div class="border d-flex justify-content-center align-items-center border-dashed bg-light wh-40" role="button" @click="addProductImages(index)"><i class="bi bi-plus fs-3 text-muted"></i></div>
-                              </div> -->
-
-
                               <div class="product-images d-flex flex-wrap" style="margin-right: -8px">
                                 <div v-for="image, index in detail.images" :key="index" class="product-item wh-40 border d-flex justify-content-center align-items-center me-2 mb-2 position-relative">
                                   <div class="position-absolute top-0 end-0">
@@ -402,8 +390,6 @@
                               </div>
                       </td>
                       <td>
-                    
-                        
                               <input type="text" class="form-control" v-model="detail.title" :name="'detail[' + detailIndex + '][title]'"
                                 placeholder="标题">
                       </td>
@@ -424,6 +410,76 @@
                 </table>
               </div>
             </x-admin::form.row>
+            </div>
+
+            <div>
+              <h5 class="border-bottom pb-3 mb-4">Product-Tech-展示图片</h5>
+              <x-admin::form.row title="配置Product-Tech">
+                <div class="pdf-table">
+                  <table class="table table-bordered w-max-600">
+                    <thead>
+                      <th>图片</th>
+                      <th>标题</th>
+                      <th>描述</th>
+                      <th>技术标题</th>
+                      <th>技术规格</th>
+                      <th>svg</th>
+                      <th width="50px">操作</th>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(tech, techIndex) in form.techs" :key="techIndex">
+                        <td>
+                          <div class="product-images d-flex flex-wrap" style="margin-right: -8px">
+                            <div v-for="image, index in tech.images" :key="index"
+                              class="product-item wh-40 border d-flex justify-content-center align-items-center me-2 mb-2 position-relative">
+                              <div class="position-absolute top-0 end-0">
+                                <button class="btn btn-danger btn-sm wh-20 p-0" @click="removeTechImages(techIndex, index)"
+                                  type="button"><i class="bi bi-trash"></i></button>
+                              </div>
+                              <img :src="thumbnail(image)" class="img-fluid" style="max-height: 40px;">
+                              <input type="hidden" class="form-control" v-model="tech.images[index]"
+                                :name="'tech[' + techIndex + '][images][]'" placeholder="image">
+                            </div>
+                            <div class="border d-flex justify-content-center align-items-center border-dashed bg-light wh-40"
+                              role="button" @click="addTechImages(techIndex)"><i class="bi bi-plus fs-3 text-muted"></i></div>
+                          </div>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model="tech.title" :name="'tech[' + techIndex + '][title]'"
+                            placeholder="标题">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model="tech.desc" :name="'tech[' + techIndex + '][desc]'"
+                            placeholder="描述">
+
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model="tech.tech_title" :name="'tech[' + techIndex + '][tech_title]'"
+                            placeholder="技术标题">
+
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model="tech.tech_guige" :name="'tech[' + techIndex + '][tech_guige]'"
+                            placeholder="技术规格">
+
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model="tech.tech_svg" :name="'tech[' + techIndex + '][tech_svg]'"
+                            placeholder="svg">
+
+                        </td>
+                        <td class="text-end">
+                          <i @click="form.techs.splice(techIndex, 1)" class="bi bi-x-circle fs-4 text-danger cursor-pointer"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6"></td>
+                        <td class="text-end"><i class="bi bi-plus-circle cursor-pointer fs-4" @click="addTechs"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </x-admin::form.row>
             </div>
 
           </div>
@@ -686,6 +742,7 @@
           variables: [],
           skus: @json(old('skus', $product->skus) ?? []),
           details: @json(old('details', $product->details) ?? []),  // 新增详情页ProductDetails展示功能
+          techs: @json(old('techs', $product->techs) ?? []),  // 新增详情页ProductTech展示功能
         },
 
         variablesBatch: {
@@ -700,6 +757,7 @@
           dimage: '',
           status: false,
           detail: '',
+          tech: '',
         },
 
         relations: {
@@ -941,6 +999,19 @@
             this.form.images.push(...images.map(e => e.path))
           }, {mime: 'image'})
         },
+        // 添加技术图片
+        addTechImages(techIndex) {
+          bk.fileManagerIframe(images => {
+            if(!isNaN(techIndex)){
+              if (this.form.techs[techIndex].images === null) {
+                this.form.techs[techIndex].images = images.map(e => e.path)
+              } else {
+                this.form.techs[techIndex].images.push(...images.map(e => e.path))
+              }
+              return;
+            }
+          }, {mime: 'image'})
+        },
 
         addProductDImages() {
           bk.fileManagerIframe(images => {
@@ -969,6 +1040,10 @@
 
         removeDetailImages(detailIndex, index) {
           this.form.details[detailIndex].images.splice(index, 1)
+        },
+
+        removeTechImages(techIndex, index) {
+          this.form.techs[techIndex].images.splice(index, 1)
         },
 
         batchSettingVariant() {
@@ -1133,6 +1208,9 @@
         },
         addDetails() {
           this.form.details.push({title: '', desc: '', images: []})
+        },
+        addTechs() {
+          this.form.techs.push({title: '', desc: '', images: [], tech_title: '', tech_guige: '', tech_svg: ''})
         },
 
         attributeQuerySearch(keyword, cb) {

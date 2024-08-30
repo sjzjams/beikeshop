@@ -1,0 +1,38 @@
+._op {
+    color: var(--figma-color-bg-white-100)
+}
+
+._op [data-deep=modal-wrapper] {
+    background-color: var(--figma-color-bg-black-100)
+}
+
+._op [data-deep=modal-controls] {
+    margin: 20px 0
+}
+
+._op [data-deep=modal-controls] button {
+    color: var(--figma-color-bg-white-100)
+}
+
+@media(max-width:1024px) {
+    ._op [data-deep=modal-controls] {
+        display: flex
+    }
+    ._op [data-deep=modal-marker-bottom] {
+        display: none
+    }
+}
+
+._oq {
+    position: absolute;
+    top: 20px;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: var(--figma-font-weight-medium)
+}
+
+._oq span {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: var(--figma-font-weight-bold)
+}

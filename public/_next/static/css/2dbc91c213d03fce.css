@@ -1,0 +1,207 @@
+._im {
+    margin-top: 25px
+}
+
+@media(max-width:1024px) {
+    ._cZ {
+        margin-top: 25px
+    }
+}
+
+@media(min-width:1024.01px) {
+    ._cZ {
+        margin-top: 18px
+    }
+}
+
+._vL {
+    content: "";
+    background: var(--figma-color-bg-black-20);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--index-splash-fade)
+}
+
+._vM {
+    padding: 47px 16px 0
+}
+
+@media(min-width:1024.01px) {
+    ._vM {
+        padding: 89px 40px 0;
+        width: 455px
+    }
+}
+
+._vN {
+    padding-bottom: 14px;
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: var(--figma-font-weight-bold);
+    margin: 25px 0 0
+}
+
+._vO {
+    margin-bottom: 20px
+}
+
+._vP {
+    margin-bottom: 74px
+}
+
+@media(min-width:1024.01px) {
+    ._vP {
+        margin-bottom: 79px
+    }
+}
+
+._vQ {
+    transform: translateY(-30px);
+    height: calc(100vh - 135px) !important;
+    overflow-y: auto
+}
+
+@media(min-width:1024.01px) {
+    ._vQ {
+        height: calc(100vh - 255px) !important
+    }
+}
+
+._vR {
+    position: absolute;
+    top: 40px;
+    right: 40px
+}
+
+@media(max-width:1024px) {
+    ._vR {
+        color: var(--figma-color-bg-black-70);
+        top: 17px;
+        right: 16px
+    }
+    ._vR svg {
+        width: 18px;
+        height: 18px
+    }
+}
+
+._vS [data-deep=container] {
+    padding: 0 !important
+}
+
+._vT {
+    padding: 0;
+    display: flex;
+    justify-content: right;
+    margin-top: 25px
+}
+
+@media(min-width:1024.01px) {
+    ._vT {
+        margin-top: 40px
+    }
+}
+
+._vU {
+    padding: 0 40px
+}
+
+@media(min-width:1024.01px) {
+    ._vU {
+        padding: 0
+    }
+}
+
+._vV {
+    padding: 0
+}
+
+@media(min-width:1024.01px) {
+    ._vV {
+        padding: 25px 0 0
+    }
+}
+
+._vW {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: var(--figma-font-weight-bold);
+    font-weight: 800;
+    margin: 0;
+    padding-bottom: 11px
+}
+
+._vX {
+    padding-bottom: 10px !important
+}
+
+@media(min-width:1024.01px) {
+    ._vY {
+        margin-top: 15px
+    }
+}
+
+._vZ {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 30px
+}
+
+._v0 {
+    margin-bottom: 29px !important
+}
+
+._v1 {
+    margin-left: 13px
+}
+
+._v2 {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 29px
+}
+
+._v3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: var(--figma-font-weight-medium)
+}
+
+._v4 {
+    margin-bottom: 29px
+}
+
+._v5 input {
+    font-size: 16px !important;
+    border: 1px solid #949494;
+    background: #f7f7f7
+}
+
+._v6 {
+    color: var(--figma-color-text-secondary)
+}
+
+._v7 {
+    height: calc(100vh - 72px) !important
+}
+
+@media(min-width:1024.01px) {
+    ._v7 {
+        height: calc(100vh - 435px) !important
+    }
+}
+
+._v8 {
+    padding: 0
+}
+
+._v9 {
+    height: 17px;
+    display: block;
+    font-size: 0 !important
+}

@@ -195,6 +195,8 @@ $(function () {
     // 检查路径是否为空或仅为 "/"
     if (parsedUrl.pathname === '/' || parsedUrl.pathname === '') {
         return true; // 当前页面是主页
+    }else if(parsedUrl.pathname === '/login' || parsedUrl.pathname === '/register'){
+      return true; // 排除登录和注册页
     }
 
     return false; // 当前页面不是主页

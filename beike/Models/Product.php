@@ -60,6 +60,11 @@ class Product extends Base
     {
         return $this->hasMany(ProductDetails::class);
     }
+    // 新增tech
+    public function techs(): HasMany
+    {
+        return $this->hasMany(ProductTech::class);
+    }
 
     public function masterSku()
     {

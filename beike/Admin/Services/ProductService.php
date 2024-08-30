@@ -44,11 +44,13 @@ class ProductService
 
             // 处理ProductDetails
             $detailsData = $data['detail'] ?? [];
+            $techsData = $data['tech'] ?? [];
             if ($isUpdating) {
                 $product->skus()->delete();
                 $product->descriptions()->delete();
                 $product->attributes()->delete();
                 $product->details()->delete();
+                $product->techs()->delete();
             }
 
             $descriptions = [];
@@ -81,6 +83,13 @@ class ProductService
                 $details[]        = $detail;
             }
             $product->details()->createMany($details);
+
+            $techs = [];
+            foreach ($techsData as $locale => $tech) {
+                $tech['locale'] = $locale;
+                $techs[]        = $tech;
+            }
+            $product->techs()->createMany($techs);
 
             DB::commit();
 

@@ -28,13 +28,13 @@
   @if (!request('iframe') && request('_from') != 'app')
     @include('layout.header')
   @endif
-
+  <div >
   @yield('content')
 
   @if (!request('iframe') && request('_from') != 'app')
     @include('layout.footer')
   @endif
-
+  </div>
   <script>
     const config = {
       isLogin: !!{{ current_customer()->id ?? 'null' }},
