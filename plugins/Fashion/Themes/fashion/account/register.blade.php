@@ -12,7 +12,7 @@
 @section('content')
 
 
-  <div  id="page-login" style="background-image: url(&quot;https://amymhaddad.s3.amazonaws.com/morocco-blue.png&quot;);" v-cloak>
+  <div  id="page-login" style="background-image: url('/catalog/TrueImg/pexels-melvinwahlin-2433353%202(1).png'); v-cloak">
     
     <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px;">
       <div class="card" style="border-radius: 10px;">
@@ -44,7 +44,7 @@
               <div class="mt-5 mb-3">
                 <button type="button" @click="checkedBtnLogin('registerForm')" class="btn btn-dark btn-lg w-100 fw-bold"><i class="bi bi-person"></i> {{ __('shop/login.register') }}</button>
               </div>
-              <a class="text-muted forgotten-link" href="{{ shop_route('register.index') }}"><i class="bi bi-question-circle"></i>Already have an account? Sign in</a>
+              <a class="text-muted forgotten-link" href="{{ shop_route('login.index') }}"><i class="bi bi-question-circle"></i>Already have an account? Sign in</a>
             </el-form>
         </div>
       </div>

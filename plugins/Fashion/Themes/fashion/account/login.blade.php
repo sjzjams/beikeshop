@@ -10,20 +10,18 @@
 
 
 @section('content')
-  @if (!request('iframe'))
-    <x-shop-breadcrumb type="static" value="login.index" />
-  @endif
-
-  <div class="{{ request('iframe') ? 'container-fluid form-iframe mt-5' : 'container' }}" id="page-login" v-cloak>
 
 
-    <div class="login-wrap">
-      <div class="card">
+  <div id="page-login" style="background-image: url('/catalog/TrueImg/pexels-melvinwahlin-2433353%202(1).png');" v-cloak>
+
+
+    <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px;">
+      <div class="card" style="border-radius: 10px;">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" :inline-message="true">
-          <div class="login-item-header card-header">
+          <div class="login-item-header card-header" style="border-radius: 10px;">
             <h6 class="text-uppercase mb-0">{{ __('shop/login.login') }}</h6>
           </div>
-          <div class="card-body px-md-2">
+          <div class="card-body px-md-5">
             @hookwrapper('account.login.email')
             <el-form-item label="{{ __('shop/login.email') }}" prop="email">
               <el-input @keyup.enter.native="checkedBtnLogin('loginForm')" v-model="loginForm.email" placeholder="{{ __('shop/login.email_address') }}"></el-input>
