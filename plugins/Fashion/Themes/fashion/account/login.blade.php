@@ -6,59 +6,131 @@
   <script src="{{ asset('vendor/vue/2.7/vue' . (!config('app.debug') ? '.min' : '') . '.js') }}"></script>
   <script src="{{ asset('vendor/element-ui/index.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('vendor/element-ui/index.css') }}">
+  <style lang="scss" scoped>
+    main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 140px 96px 84px 96px;
+        }
+        .sign-in-card {
+            background-color: rgba(255, 255, 255);
+            padding: 72px 96px 72px 96px;
+            border-radius: 8px;
+            width: 544px;
+            max-width: 544px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        input {
+            width: 325px;
+            height: 48px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 90px !important;
+        }
+        ::v-deep .finput .el-input__inner {
+            width: 325px;
+            height: 48px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 90px !important;
+        }
+        .finput /deep/ input {
+          width: 325px;
+            height: 48px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 90px !important;
+        }
+        .el-input /deep/ .el-input__inner {
+            width: 325px;
+            height: 48px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 90px !important;
+        }
+
+        .password-container {
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .forgot-password {
+            text-align: right;
+            font-size: 0.9rem;
+            padding-top: 9px;
+            margin-right: 30px;
+        }
+        button {
+            background-color: #333;
+            height: 48px;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 90px;
+            cursor: pointer;
+            width: 329px;
+        }
+        .create-account {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+          .sign-in-card {
+              padding: 72px 20px 72px 20px;
+          }
+        }
+  </style>
 @endpush
 
 
 @section('content')
-
-
-  <div id="page-login" style="background-image: url('/catalog/llbj.png');" v-cloak>
-
-
-    <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px; ">
-      <div class="card" style="border-radius: 10px; height: 451px;">
-        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" :inline-message="true">
-          <div class="login-item-header card-header" style="border-radius: 10px;">
-            <h6 class="text-uppercase mb-0">{{ __('shop/login.login') }}</h6>
-          </div>
-          <div class="card-body px-md-5">
-            @hookwrapper('account.login.email')
-            <el-form-item label="{{ __('shop/login.email') }}" prop="email">
-              <el-input @keyup.enter.native="checkedBtnLogin('loginForm')" v-model="loginForm.email" placeholder="{{ __('shop/login.email_address') }}"></el-input>
-            </el-form-item>
-            @endhookwrapper
-
-            @hookwrapper('account.login.password')
-            <el-form-item label="{{ __('shop/login.password') }}" prop="password">
-              <el-input @keyup.enter.native="checkedBtnLogin('loginForm')" type="password" v-model="loginForm.password" placeholder="{{ __('shop/login.password') }}"></el-input>
-            </el-form-item>
-            @endhookwrapper
-
-            @hook('account.login.password.after')
-
-            @if (!request('iframe'))
-              <a class="text-muted forgotten-link" href="{{ shop_route('forgotten.index') }}"><i class="bi bi-question-circle"></i> {{ __('shop/login.forget_password') }}</a>
-              
-            @endif
-
-            <div class="mt-4 mb-3">
-              <button type="button" @click="checkedBtnLogin('loginForm')" class="btn btn-dark btn-lg w-100 fw-bold"><i class="bi bi-box-arrow-in-right"></i> {{ __('shop/login.login') }}</button>
+<div id="page-login" style="background-image: url('/catalog/llbj.png');" v-cloak>
+    <main>
+        <div class="sign-in-card">
+            <h1>Sign in</h1>
+            <el-form  ref="loginForm" :model="loginForm" :rules="loginRules" :inline-message="true">
+                @hookwrapper('account.login.email')
+                <el-form-item  prop="email">
+                  <el-input @keyup.enter.native="checkedBtnLogin('loginForm')" v-model="loginForm.email" placeholder="{{ __('shop/login.email_address') }}" class="finput"></el-input>
+                </el-form-item>
+                @endhookwrapper
+                <div class="password-container">
+                    @hookwrapper('account.login.password')
+                    <el-form-item  prop="password">
+                      <el-input @keyup.enter.native="checkedBtnLogin('loginForm')" type="password" v-model="loginForm.password" placeholder="{{ __('shop/login.password') }}" class="finput"></el-input>
+                    </el-form-item>
+                    @endhookwrapper
+                    <div class="forgot-password">
+                        <a href="{{ shop_route('forgotten.index') }}" style="color: rgba(119, 126, 144, 1);">Forgot your password?</a>
+                    </div>
+                </div>
+                
+                <button type="button" @click="checkedBtnLogin('loginForm')">{{ __('shop/login.login') }}</button>
+            </el-form>
+            <div class="create-account">
+                Don't have an account? <a href="{{ shop_route('register.index') }}" style="color: rgba(53, 57, 69, 1);text-decoration:underline;">Create one here</a>
             </div>
-            <a class="text-muted forgotten-link" href="{{ shop_route('register.index') }}"><i class="bi bi-question-circle"></i> Don't have an account? Create one here</a>
-          </div>
-        </el-form>
-
-        @if($social_buttons)
-          <div class="social-wrap px-2">
-            <div class="title mb-4"><span>{{ __('shop/login.third_party_logins') }}</span></div>
-            @foreach($social_buttons as $button)
-              {!! $button !!}
-            @endforeach
-          </div>
-        @endif
-      </div>
-    </div>
-  </div>
+        </div>
+    </main>
+</div>
 @endsection
 
 @push('add-scripts')
