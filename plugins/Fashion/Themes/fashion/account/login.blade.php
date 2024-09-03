@@ -12,11 +12,11 @@
 @section('content')
 
 
-  <div id="page-login" style="background-image: url('/catalog/TrueImg/pexels-melvinwahlin-2433353%202(1).png');" v-cloak>
+  <div id="page-login" style="background-image: url('/catalog/llbj.png');" v-cloak>
 
 
-    <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px;">
-      <div class="card" style="border-radius: 10px;">
+    <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px; ">
+      <div class="card" style="border-radius: 10px; height: 451px;">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" :inline-message="true">
           <div class="login-item-header card-header" style="border-radius: 10px;">
             <h6 class="text-uppercase mb-0">{{ __('shop/login.login') }}</h6>

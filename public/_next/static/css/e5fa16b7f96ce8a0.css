@@ -612,7 +612,7 @@
 }
 
 ._pf {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 36px;
     font-weight: var(--figma-font-weight-bold);
     margin: 0
@@ -621,7 +621,8 @@
 ._pg {
     display: flex;
     flex-direction: row;
-    margin-top: 5px
+    margin-top: 4px;
+    margin-bottom: 16px;
 }
 
 ._ph {

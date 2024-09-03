@@ -70,11 +70,26 @@
         <ul class="navbar-nav flex-row align-items-center" style="color: rgba(255, 255, 255, 0.6);">
           @hookwrapper('header.menu.icon')
           <li class="nav-item">
-          <div class="searchpc" href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample"> <input type="text" class="searchinput form-control" placeholder="Search p roproducts"> <i class="fa fa-search iconfont">&#xe8d6;</i> </div>
+          <div class="searchpc" href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample"> 
+            <input type="text" class="searchinput form-control" placeholder="Search p roproducts"> 
+            <i class="fa fa-search iconfont">&#xe8d6;</i> 
+          </div>
 
             <!-- <a href="#offcanvas-search-top" data-bs-toggle="offcanvas" aria-controls="offcanvasExample" class="nav-link"><i class="iconfont">&#xe8d6;</i></a> -->
           </li>
-          <li class="nav-item"><a href="{{ shop_route('account.wishlist.index') }}" class="nav-link"><i class="iconfont">&#xe662;</i></a></li>
+          <li class="nav-item">
+            {{-- <a class="nav-link position-relative" {{ !equal_route('shop.carts.index') ? 'data-bs-toggle=offcanvas' : '' }}
+            href="{{ !equal_route('shop.carts.index') ? '#offcanvas-right-cart' : 'javascript:void(0);' }}" role="button"
+            aria-controls="offcanvasExample">
+            <i class="iconfont">&#xe634;</i>
+            <span class="cart-badge-quantity"></span>
+            </a> --}}
+            <a class="nav-link position-relative btn-right-cart {{ equal_route('shop.carts.index') ? 'page-cart' : '' }}" href="javascript:void(0);" role="button">
+              <i class="iconfont">&#xe634;</i>
+              <span class="cart-badge-quantity"></span>
+            </a>
+          </li>
+          <!-- <li class="nav-item"><a href="{{ shop_route('account.wishlist.index') }}" class="nav-link"><i class="iconfont">&#xe662;</i></a></li> -->
           <li class="nav-item dropdown">
             <a href="{{ shop_route('account.index') }}" class="nav-link"><i class="iconfont">&#xe619;</i></a>
             <ul class="dropdown-menu">
@@ -100,18 +115,7 @@
             </ul>
           </li>
           @endhookwrapper
-          <li class="nav-item">
-            {{-- <a class="nav-link position-relative" {{ !equal_route('shop.carts.index') ? 'data-bs-toggle=offcanvas' : '' }}
-            href="{{ !equal_route('shop.carts.index') ? '#offcanvas-right-cart' : 'javascript:void(0);' }}" role="button"
-            aria-controls="offcanvasExample">
-            <i class="iconfont">&#xe634;</i>
-            <span class="cart-badge-quantity"></span>
-            </a> --}}
-            <a class="nav-link position-relative btn-right-cart {{ equal_route('shop.carts.index') ? 'page-cart' : '' }}" href="javascript:void(0);" role="button">
-              <i class="iconfont">&#xe634;</i>
-              <span class="cart-badge-quantity"></span>
-            </a>
-          </li>
+          
         </ul>
       </div>
     </div>

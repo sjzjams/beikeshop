@@ -12,10 +12,10 @@
 @section('content')
 
 
-  <div  id="page-login" style="background-image: url('/catalog/TrueImg/pexels-melvinwahlin-2433353%202(1).png'); v-cloak">
+  <div  id="page-login" style="background-image: url('/catalog/llbj.png'); v-cloak">
     
-    <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px;">
-      <div class="card" style="border-radius: 10px;">
+    <div class="login-wrap" style="padding-top: 111px;padding-bottom: 49px; ">
+      <div class="card" style="border-radius: 10px; height: 588px;">
         <div class="login-item-header card-header" style="border-radius: 10px;">
           <h6 class="text-uppercase mb-0">Join the crew!</h6>
         </div>

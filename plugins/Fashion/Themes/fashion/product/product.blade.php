@@ -25,8 +25,23 @@
   <link rel="stylesheet" href="{{ asset('/_next/static/css/2dbc91c213d03fce.css') }}" data-precedence="next" />
   <link rel="stylesheet" href="{{ asset('/_next/static/css/0bb4eff91d5a9dd1.css') }}" data-precedence="next" />
   <link rel="stylesheet" href="{{ asset('/_next/static/css/8a4733f80582529c.css') }}" as="style" data-precedence="dynamic" />
+  <script src="{{ asset('/_next/static/js/page-3ce974bb63d86c5a.js') }}" async=""></script>
+  <link rel="stylesheet" href="{{ asset('/_next/static/css/maodian.css') }}" as="style" data-precedence="dynamic" />
 
+  <style>
+
+
+    .swiper-scrollbar-drag {
+      background-color: #282931;
+      width: 250px;
+    }
+    .my-bullet-active{
+      background: rgba(255, 255, 255, 1);
+    }
+    
+  </style>
   @endpush
+
 
 
   @php
@@ -58,7 +73,24 @@
             <div class="_pf" data-e2e="HN">{{ $product['name'] }}</div>
             <div class="_pg">
 
-              <div class="_pi"><span class="_gZ">@{{ product.price_format }}</span></div>
+              <!-- <div class="_pi"><span class="_gZ">@{{ product.price_format }}</span></div> -->
+              @hookwrapper('product.detail.price')
+              @if ((system_setting('base.show_price_after_login') and current_customer()) or !system_setting('base.show_price_after_login'))
+              <div class="price-wrap d-flex align-items-end">
+                <div class="new-price fs-3 lh-1 fw-bold me-2" style="color: rgba(236, 45, 32, 1);">@{{ product.price_format }}</div>
+                <div class="old-price text-muted text-decoration-line-through" v-if="product.price != product.origin_price && product.origin_price !== 0">
+                  @{{ product.origin_price_format }}
+                </div>
+              </div>
+              @else
+              <div class="product-price">
+                <div class="text-dark fs-6">{{ __('common.before') }} <a class="price-new fs-6 login-before-show-price" href="javascript:void(0);">{{ __('common.login') }}</a> {{ __('common.show_price') }}</div>
+              </div>
+              @endif
+
+              @hook('product.detail.price.after')
+
+              @endhookwrapper
             </div>
           </div>
           @hookwrapper('product.detail.variables')
@@ -133,13 +165,20 @@
           </ul>
         </div>
       </section>
+
       <section id="tabs" class="_k2 _k3">
-        <button role="button" class="_tX" href="#details-to" data-e2e="tab-details" tabindex="0">Details</button>
-        <button role="button" class="_tX" href="#info-to" data-e2e="tab-inf" tabindex="0">Information</button>
-        <button role="button" class="_tX" href="#tech-to" data-e2e="tab-tech" tabindex="0">Tech</button>
-        <!-- <button role="button" class="_tX" data-e2e="tab-try-on" tabindex="0">Try On</button>
-        <button role="button" class="_tX" data-e2e="tab-reviews" tabindex="0">Reviews</button> -->
+        <button role="button" class="_tX"   href="#details" data-e2e="tab-details" tabindex="0">Details</button>
+        <button role="button" class="_tX"  href="#info" data-e2e="tab-inf" tabindex="0">Information</button>
+        <button role="button" class="_tX"  href="#tech" data-e2e="tab-tech" tabindex="0">Tech</button>
       </section>
+      <!-- <section id="tabs" class="_k2 _k3">
+        <div class="et-hero-tabs-container"> 
+            <a class="et-hero-tab" href="#details">Details</a> 
+            <a class="et-hero-tab"href="#info">Information</a> 
+            <a class="et-hero-tab" href="#tech">Tech</a> 
+            <span class="et-hero-tab-slider"></span> 
+        </div>
+    </section> -->
       <section id="details" class="_g3">
         <div class="_hd">Details</div>
         <div class="slider-10-3-3 _g7">
@@ -252,11 +291,13 @@
                     </div>
                   </div>
                   <!-- <div class="swiper-pagination relations-pagination"></div> -->
-                  <div class="swiper-scrollbar"></div>
+                  
                   <div class="swiper-button-prev relations-swiper-prev"></div>
                   <div class="swiper-button-next relations-swiper-next"></div>
                 </div>
+                
               </div>
+              <div class="swiper-scrollbar"></div>
             </div>
             @endif
           </div>
@@ -463,6 +504,7 @@
       pagination: {
         el: '.pc-pagination',
         clickable: true,
+        bulletActiveClass: 'my-bullet-active',
       },
       observer: true,
       observeParents: true
@@ -470,19 +512,20 @@
 
     var relationsSwiper = new Swiper('.relations-swiper', {
       watchSlidesProgress: true,
-      autoHeight: true,
+      height: 384,//你的slide高度      slidesPerView: 3,
       slidesPerView: 1,
       centeredSlides: false,
       slidesPerGroupSkip: 1,
       grabCursor: true,
+      dragSize: 250, //滚动条滑块的长度
       breakpoints: {
         320: {
           slidesPerView: 2,
           spaceBetween: 10,
         },
         768: {
-          slidesPerView: 4,
-          spaceBetween: 30,
+          slidesPerView: 3,
+          spaceBetween: 20,
         },
       },
       spaceBetween: 30,
@@ -492,7 +535,8 @@
         prevEl: '.relations-swiper-prev',
       },
       scrollbar: {
-        el: '.swiper-scrollbar'
+        el: '.swiper-scrollbar',
+        dragSize: 250
       },
       // 如果需要分页器
       pagination: {
@@ -500,22 +544,24 @@
         clickable: true,
       },
     })
+    relationsSwiper.scrollbar.$el.css('height','2px');
     var relationsSwiper1 = new Swiper('.details-relations-swiper', {
       watchSlidesProgress: true,
-      autoHeight: true,
+      // autoHeight: true,
+      height: 384,//你的slide高度
       slidesPerView: 3,
       centeredSlides: false,
       slidesPerGroupSkip: 1,
       grabCursor: true,
-      dragSize: 30, //滚动条滑块的长度
+      dragSize: 250, //滚动条滑块的长度
       breakpoints: {
         320: {
           slidesPerView: 2,
           spaceBetween: 10,
         },
         768: {
-          slidesPerView: 4,
-          spaceBetween: 30,
+          slidesPerView: 3,
+          spaceBetween: 20,
         },
       },
       spaceBetween: 30,
@@ -525,7 +571,8 @@
         prevEl: '.details-relations-swiper-prev',
       },
       scrollbar: {
-        el: '.details-swiper-scrollbar'
+        el: '.details-swiper-scrollbar',
+        dragSize: 250,
       },
 
       // 如果需要分页器
@@ -534,22 +581,22 @@
         clickable: true,
       },
     })
+    relationsSwiper1.scrollbar.$el.css('height','2px');
     var techSwiper = new Swiper('.tech-relations-swiper', {
       watchSlidesProgress: true,
-      autoHeight: true,
-      slidesPerView: 1,
+      height: 384,//你的slide高度      slidesPerView: 3,
       centeredSlides: false,
       slidesPerGroupSkip: 1,
       grabCursor: true,
-      dragSize: 30, //滚动条滑块的长度
+      dragSize: 250, //滚动条滑块的长度
       breakpoints: {
         320: {
           slidesPerView: 2,
           spaceBetween: 10,
         },
         768: {
-          slidesPerView: 4,
-          spaceBetween: 30,
+          slidesPerView: 3,
+          spaceBetween: 20,
         },
       },
       spaceBetween: 30,
@@ -559,7 +606,8 @@
         prevEl: '.tech-relations-swiper-prev',
       },
       scrollbar: {
-        el: '.tech-swiper-scrollbar'
+        el: '.tech-swiper-scrollbar',
+        dragSize: 250,
       },
 
       // 如果需要分页器
@@ -568,10 +616,13 @@
         clickable: true,
       },
     })
+    techSwiper.scrollbar.$el.css('height','2px');
     var productSwiper = new Swiper(".mySwiper", {
       slidesPerView: 1,
         pagination: {
           el: ".mobile-pagination",
+          clickable: true,
+          bulletActiveClass: 'my-bullet-active',
         },
         observer: true,
         observeParents: true
@@ -588,7 +639,6 @@
       //   // },
       // }
     })
-
     @if(is_mobile())
     swiperMobile = new Swiper("#swiper-mobile", {
       slidesPerView: 1,
@@ -614,22 +664,7 @@
     const selectedVariants = variables.map((variable, index) => {
       return variable.values[selectedVariantsIndex[index]]
     });
-  </script>
-  <!-- <script>
-    window.onload = function(){
 
-    document.querySelector("#details-to").onclick = function(){
-        document.querySelector("#details").scrollIntoView(false);
-    }
-    document.querySelector("#info-to").onclick = function(){
-        document.querySelector("#info").scrollIntoView(false);
-    }
-    document.querySelector("#tech-to").onclick = function(){
-        document.querySelector("#tech").scrollIntoView(false);
-    }
-    // document.querySelector("#info").onclick = function(){
-    //     document.querySelector("#roll_top").scrollIntoView(true);
-    // }
-  }
-  </script> -->
+  </script>
+
   @endpush
