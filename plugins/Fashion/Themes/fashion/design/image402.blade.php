@@ -101,6 +101,7 @@
     .module-image-info-4 {
       gap: 1.5rem;
     }
+
     /* 当屏幕宽度小于 768px 时 */
     .grid-item img {
       width: 100%;
@@ -110,12 +111,13 @@
     }
 
     .overlay {
-      bottom: 15px;
+      /* bottom: 15px; */
       /* 调整底部距离以适应小屏幕 */
       left: 10px;
       /* 调整左边距离以适应小屏幕 */
       font-size: 14px;
     }
+
     .text::before {
       width: 15px;
       height: 15px;
@@ -210,41 +212,52 @@
       /* 保持图片的宽高比 */
     }
   }
+
   .grid-container {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: 10px; /* 间距 */
-}
+    gap: 10px;
+    /* 间距 */
+  }
 
-.item {
+  .item {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
-}
+  }
 
-/* 桌面端样式 */
-/* .item-1 { background-color: lightblue; }
+  /* 桌面端样式 */
+  /* .item-1 { background-color: lightblue; }
 .item-2 { background-color: lightgreen; }
 .item-3 { background-color: lightyellow; } */
 
-/* 移动端样式 */
-@media (max-width: 768px) {
+  /* 移动端样式 */
+  @media (max-width: 768px) {
 
     .item-1 {
-        grid-column: 1 / span 3;
-        grid-row: 1 / span 1;
+      grid-column: 1 / span 3;
+      grid-row: 1 / span 1;
     }
 
     .item-2 {
-        grid-column: 1 / span 1;
-        grid-row: 2 / span 1;
+      grid-column: 1 / span 1;
+      grid-row: 2 / span 1;
     }
 
     .item-3 {
-        grid-column: 2 / span 2;
-        grid-row: 2 / span 1;
+      grid-column: 2 / span 2;
+      grid-row: 2 / span 1;
     }
-}
+
+    .item-contact {
+      grid-row: 2 / span 1;
+    }
+
+    .item-contact-2 {
+      grid-column: 2 / span 3;
+      grid-row: 2 / span 1;
+    }
+  }
 </style>
 <section class="module-item {{ $design ? 'module-item-design' : ''}}" id="module-{{ $module_id }}">
   @include('design._partial._module_tool')
@@ -394,14 +407,21 @@
       .module-image-info-2 .grid-2-layout .text-column .info-box .description {
         font-size: 0.875rem;
         /* 减小描述文字大小 */
-        margin-top: 0.25rem; /* 添加顶部边距以与标题分开 */
+        margin-top: 0.25rem;
+        /* 添加顶部边距以与标题分开 */
       }
+
       .module-image-info-2 .grid-2-layout .text-column .info-box .arrow-right {
-        position: absolute; /* 绝对定位 */
-        right: 1rem; /* 距离右侧边缘的距离 */
-        top: 50%; /* 垂直居中 */
-        transform: translateY(-50%); /* 垂直居中 */
+        position: absolute;
+        /* 绝对定位 */
+        right: 1rem;
+        /* 距离右侧边缘的距离 */
+        top: 50%;
+        /* 垂直居中 */
+        transform: translateY(-50%);
+        /* 垂直居中 */
       }
+
       .module-image-info-2 .grid-2-layout .image-column {
         position: relative;
         /* 使图片相对于容器定位 */
@@ -494,15 +514,127 @@
         </div>
       </div>
       @else
-      <div>
-        移动端
+      <!--如果是移动端展示开始-->
+      <style>
+        .inbox-div {
+          height: 50px;
+          opacity: 1;
+          border-radius: 4px;
+          background: rgba(40, 41, 49, 1);
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 20px 40px 20px 20px;
+          margin-bottom: 10px;
+        }
+
+        .inbox-div-nei {
+          opacity: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .inbox-div-nei-right {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 15px;
+          color: rgba(255, 255, 255, 1);
+          margin-left: 10px;
+        }
+
+        .inbox-div-nei-left {
+          width: 48px;
+          height: 48px;
+          color: rgba(255, 255, 255, 1);
+          backdrop-filter: blur(5px);
+          display: flex;
+          /* margin-left: 160px; */
+        }
+        .inbox-div-nei-left-svg {
+          margin-left: 150px;
+        }
+        .inbox-div-nei-left-svg-2 {
+          margin-left: 102px;
+        }
+        @media screen and (max-width: 390px) {
+          .inbox-div-nei-left-svg {
+            margin-left: 130px;
+          }
+          .inbox-div-nei-left-svg-2 {
+            margin-left: 81px;
+          }
+        }
+      </style>
+      <div class="module-image-info-3 d-grid grid-4">
+
+        <div class="column image-column item-contact">
+          <p>
+            You talk and we listen.<br>
+            That’s how we live every day, and that’s what gets us up in the morning. Our customer experience team is always stoked and ready to answer to all of your questions! From help with your order to the best ski resorts to visit.
+          </p>
+
+        </div>
+        <div class="column image-column double-images item-contact-2">
+          <img src="{{ asset('image/fashionimg/about3.png') }}" alt="Image 3" class="image rounded">
+        </div>
+
       </div>
+      <div class="inbox-div">
+        <div class="inbox-div-nei">
+          <div style="color: rgba(255, 255, 255, 1);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="28" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"></path>
+            </svg>
+          </div>
+          <div class="inbox-div-nei-right">
+            Email<br>
+            <div style="margin-left: 8px;">
+              crew@tsykoo.com
+            </div>
+
+          </div>
+          <div class="inbox-div-nei-left">
+            <div style="margin-top: 7px;">
+              <svg class="inbox-div-nei-left-svg" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="inbox-div">
+        <div class="inbox-div-nei">
+          <div style="color: rgba(255, 255, 255, 1);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="28" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+              <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+              <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"></path>
+            </svg>
+          </div>
+          <div class="inbox-div-nei-right">
+            Messenger<br>
+            <div style="margin-left: 8px;">
+              Talk with us on messenger
+            </div>
+
+          </div>
+          <div class="inbox-div-nei-left">
+            <div style="margin-top: 7px;">
+              <svg class="inbox-div-nei-left-svg-2" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--如果是移动端展示end-->
       @endif
       <!--如果是移动端展示end-->
     </div>
-    
 
-    
+
+
 
     <!--底部两列展示结束-->
   </div>

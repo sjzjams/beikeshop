@@ -41,12 +41,12 @@
 
             /* footer._b1 下logo外部div */
             .b1-logo-waidiv {
-                opacity: 1;
+                /* opacity: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
-                padding: 12px 0px 12px 0px;
+                padding: 12px 0px 12px 0px; */
 
             }
 
@@ -82,7 +82,7 @@
                 display: flex;
 
                 /** 文本1 */
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 400;
                 letter-spacing: 0px;
                 line-height: 38.4px;
@@ -123,7 +123,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
-                width: 148px;
+                width: 120px;
             }
 
             .b1-bottom-share-icon {
