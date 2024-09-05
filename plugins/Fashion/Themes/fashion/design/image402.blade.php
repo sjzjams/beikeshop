@@ -380,7 +380,7 @@
         /* 使用弹性布局 */
         align-items: center;
         /* 垂直居中对齐 */
-        background-color: #000;
+        background-color: rgba(40, 41, 49, 1);
         /* 黑色背景 */
         color: #fff;
         /* 白色文字 */

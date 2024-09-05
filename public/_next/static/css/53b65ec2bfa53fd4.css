@@ -1328,7 +1328,7 @@
 ._zq,
 ._zq:visited {
     color: var(--figma-color-bg-white-100);
-    background-color: var(--figma-color-bg-black-100);
+    background-color: #282931;
     border: 1px solid transparent
 }
 
